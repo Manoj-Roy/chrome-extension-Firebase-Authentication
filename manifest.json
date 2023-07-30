@@ -1,0 +1,11 @@
+{
+    "name": "Sample Extension",
+    "version": "1.0.0",
+    "description": "Chrome Extension| Authentication with recapcha3",
+    "manifest_version": 3,
+    "author": "Manoj Roy",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Chrome Extension with Firebase"
+    }
+}
