@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container mt-3">
+    <div class="container mt-3" style="width: 300px;">
         <!-- sign up -->
         <div id="signUpControle" class="allComponents none">
             <div class="card">
@@ -37,8 +37,9 @@
                         <div class="col-sm-12 mt-3 d-grid gap-2">
                             <!-- <input type="button" class="form-control" id="signUp" value="Sign Up"> -->
                             <input type="submit" id="signUp" class="btn btn-success" value="Sign Up" />
-                            <p class="text-center fw-light">Already you are member? <a style="cursor: pointer;"
-                                    onclick="showComponent('logInControle')" class="text-reset">Log In</a></p>
+                            <p class="text-center fw-light" id="isSignUp">Already you are member? <a
+                                    style="cursor: pointer;" 
+                                    class="text-reset">Log In</a></p>
 
                         </div>
                     </div>
@@ -73,8 +74,8 @@
                         <div class="col-sm-12 mt-3 d-grid gap-2">
                             <!-- <input type="button" class="form-control" id="signUp" value="Sign Up"> -->
                             <button type="button" id="logIn" class="btn btn-success">Log In</button>
-                            <p class="text-center fw-light">Don't worry! <a style="cursor: pointer;"
-                                    onclick="showComponent('signUpControle')" class="text-reset">Sign Up</a></p>
+                            <p class="text-center fw-light" id="islogIn">Don't worry! <a style="cursor: pointer;"
+                                     class="text-reset">Sign Up</a></p>
                         </div>
                     </div>
 
@@ -116,7 +117,6 @@
 <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
     async defer>
 </script> -->
-<!-- <script src="script.js"></script> -->
 <script type="module">
     import * as firebase from "./firebase.js";
     console.log(firebase);
@@ -134,7 +134,9 @@
         signUpCred,
         logInCred,
         userDetails,
-        user;
+        user,
+        isSignUp,
+        islogIn;
 
     signEmail = document.getElementById('signEmail');
     signPassword = document.getElementById('signPassword');
@@ -147,6 +149,9 @@
     logOut = document.getElementById('logOut');
 
     user = document.getElementById('user');
+
+    isSignUp = document.getElementById('isSignUp');
+    islogIn = document.getElementById('islogIn');
 
     const logIN = async () => {
         // console.log(loginEmail.value,loginPassword.value);
@@ -187,11 +192,14 @@
         })
 
     }
-    logIn.addEventListener("click", logIN);
-    signUp.addEventListener("click", signUP);
-    logOut.addEventListener("click", logOUT);
-
+    const signed = ()=> {
+        showComponent('logInControle');
+    }
+    const logged = ()=> {
+        showComponent('signUpControle');
+    }
     window.showComponent = function (componentName) {
+        console.log(componentName);
         let allComponents = document.querySelectorAll(".allComponents");
         allComponents.forEach((el, i) => {
             el.style.display = 'none';
@@ -199,6 +207,13 @@
         let compName = document.getElementById(componentName);
         compName.style.display = 'block';
     }
+    logIn.addEventListener("click", logIN);
+    signUp.addEventListener("click", signUP);
+    logOut.addEventListener("click", logOUT);
+    isSignUp.addEventListener("click", signed);
+    islogIn.addEventListener("click", logged);
+
+    
     window.getUserDetailsByToken = async () => {
         try {
             userDetails = await fb.getIdTokenResult()
@@ -218,7 +233,7 @@
     token = localStorage.getItem('setToken');
     if (token) {
         let parseToken = parseJwt(token);
-        user.innerHTML = "Hi this is " + parseToken.email.split("@")[0];
+        user.innerHTML = "Hi this is " + parseToken.email.split("@")[0].toUpperCase();
         console.log(parseToken);
         showComponent('homeComponent');
     }
