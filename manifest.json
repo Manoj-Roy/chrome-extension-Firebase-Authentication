@@ -4,8 +4,39 @@
     "description": "Chrome Extension| Authentication with recapcha3",
     "manifest_version": 3,
     "author": "Manoj Roy",
-    "action":{
+    "action": {
         "default_popup": "index.html",
         "default_title": "Chrome Extension with Firebase"
-    }
+    },
+    "externally_connectable": {
+        "matches": [ "http://localhost/*" ]
+      },
+      
+      "content_scripts": [
+        {
+          "matches": [
+            "http://localhost/*"
+          ],
+          "js": [
+            "./inject.js"
+          ],
+          "run_at": "document_idle",
+          "all_frames": true
+        }
+      ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "./firebase/firebase-auth.js.map",
+                "./firebase/firebase-auth.js",
+                "./firebase/firebase-app.js.map",
+                "./firebase/firebase-app.js",
+                "./firebase.js",
+                "./main.js"
+            ],
+            "matches": [
+                "http://localhost/*"
+            ]
+        }
+    ]
 }

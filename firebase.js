@@ -1,9 +1,8 @@
 {/* <script type="module"> */ }
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-// import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-app-check.js';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js'
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+import { initializeApp } from "./firebase/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from './firebase/firebase-auth.js'
+// import { getAnalytics } from "./firebase/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,28 +22,18 @@ let app, appChk, analytics, auth;
     // Initialize Firebase
     app = initializeApp(firebaseConfig);
 
-    // appChk = initializeAppCheck(app, {
-    //     provider: new ReCaptchaV3Provider('6Lfkx2knAAAAAEQND9OM7iPALvqky1t279ZUtX95'),
-
-    //     // Optional argument. If true, the SDK automatically refreshes App Check
-    //     // tokens as needed.
-    //     isTokenAutoRefreshEnabled: true
-    // });
-
-    // Pass your reCAPTCHA v3 site key (public key) to activate(). Make sure this
-    // key is the counterpart to the secret key you set in the Firebase console.
-    // appChk.activate(
-    //     '6Le7LmcnAAAAAAg_L_m9CkzdPQFab0IC46c6zRBn',
-
-    //     // Optional argument. If true, the SDK automatically refreshes App Check
-    //     // tokens as needed.
-    //     true);
-    // console.log(appChk);
+   
     auth = getAuth();
-    analytics = getAnalytics(app);
+    // analytics = getAnalytics(app);
 // }
 // console.log(auth);
+// globalThis.analytics = analytics;
+globalThis.auth = auth;
+globalThis.signInWithEmailAndPassword = signInWithEmailAndPassword;
+globalThis.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+globalThis.signOut = signOut;
 
 
-export default {...{analytics:analytics, auth: auth}, ...{signInWithEmailAndPassword: signInWithEmailAndPassword}, ...{createUserWithEmailAndPassword: createUserWithEmailAndPassword}, ...{signOut:signOut}};
+window.fb = {...{ auth: auth}, ...{signInWithEmailAndPassword: signInWithEmailAndPassword}, ...{createUserWithEmailAndPassword: createUserWithEmailAndPassword}, ...{signOut:signOut}};
+export default fb;
 {/* </script> */ }
