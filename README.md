@@ -18,6 +18,10 @@ Open Chrome
 ```bash
 Extension Manage => Load Unpacked => choose Extension folder 
 ```
-Sign Up
-Sign In
+Authentication features Done
+
+```bash
+Sign Up, 
+Sign In, 
 Logout
+```
