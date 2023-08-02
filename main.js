@@ -121,7 +121,7 @@
     // document.getElementById("submit").addEventListener("click", function (e) {
     //     e.preventDefault();
     //     grecaptcha.ready(function () {
-    //         grecaptcha.execute('6Le7LmcnAAAAAAg_L_m9CkzdPQFab0IC46c6zRBn', { action: 'submit' }).then(function (token) {
+    //         grecaptcha.execute('', { action: 'submit' }).then(function (token) {
     //             // Add your logic to submit to your backend server here.
     //             console.log(token);
     //         });

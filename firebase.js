@@ -9,13 +9,13 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyA0p1R4oTyAcyFbwaI6Yd1uq3gBC9BCgZM",
+    apiKey: "", // add Your own
     authDomain: "sample-extension-a7f66.firebaseapp.com",
-    projectId: "sample-extension-a7f66",
+    projectId: "", // add Your own
     storageBucket: "sample-extension-a7f66.appspot.com",
     messagingSenderId: "887558314333",
-    appId: "1:887558314333:web:0423bcdbba3acab640b0b4",
-    measurementId: "G-XYXSVX7Y5D"
+    appId: "", // add Your own
+    measurementId: ""
 };
 let app, appChk, analytics, auth;
 // if (typeof document !== "undefined") {
